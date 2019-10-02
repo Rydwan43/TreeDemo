@@ -47,9 +47,13 @@ namespace TreeDemoApp.Controllers
             return RedirectToAction("TreeList");
         }
 
-        public ActionResult MoveTo(int id, int movedTo, int pos)
+        public ActionResult MoveTo(int id, int parentID, int pos)
         {
-            TreeElementLogic.ChangeParent(id, movedTo);
+            if (id == parentID && parentID != 0)
+            {
+                return RedirectToAction("TreeList", new { id = 0, move = 0 });
+            }
+            TreeElementLogic.ChangeParent(id, parentID);
             if (pos == -1)
             {
                 TreeElementLogic.SetLastPosition(id);
@@ -58,7 +62,7 @@ namespace TreeDemoApp.Controllers
             {
                 TreeElementLogic.ChangePosition(id, pos);
             }
-            return RedirectToAction("TreeList", new { id = movedTo });
+            return RedirectToAction("TreeList", new { id = parentID });
         }
 
         [HttpPost]
@@ -97,6 +101,10 @@ namespace TreeDemoApp.Controllers
                 }
                 treeParents.Reverse();
                 ViewBag.treeDirectory = treeParents;
+            }
+            else if (move == 1 && parentData.Count() == 0 && id != 0)
+            {
+                return RedirectToAction("TreeList", new { id = 0, move = 0});
             }
 
             List<TreeElementModel> treeElements = new List<TreeElementModel>();

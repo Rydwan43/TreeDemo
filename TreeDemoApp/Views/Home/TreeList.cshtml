@@ -6,7 +6,6 @@
 
 <h2>TreeList</h2>
 <h6>
-    @(ViewBag.rootId)
     <a href="~/Home/TreeList">root</a>
     @if (ViewBag.treeDirectory != null)
     {
@@ -21,8 +20,8 @@
     {
     <div>
         @Html.ActionLink("Cancel ", "TreeList", new { id = ViewBag.rootId }) |
-        @Html.ActionLink("To Up", "MoveTo", new { id = ViewBag.moveId, movedTo = ViewBag.rootId, Pos = 0 }) |
-        @Html.ActionLink("To Down", "MoveTo", new { id = ViewBag.moveId, movedTo = ViewBag.rootId, Pos = -1})
+        @Html.ActionLink("To Up", "MoveTo", new { id = ViewBag.moveId, parentId = ViewBag.rootId, Pos = 0 }) |
+        @Html.ActionLink("To Down", "MoveTo", new { id = ViewBag.moveId, parentId = ViewBag.rootId, Pos = -1})
     </div>
     } 
     else
@@ -47,15 +46,15 @@
         {
             <tr>
                 <td>
-                    @(item.Pos) @Html.DisplayFor(modelItem => item.Name)
-
+                    @(item.Name)
                 </td>
                 <td>
                     @if (ViewBag.move == 1 && item.Id != ViewBag.moveId)
                     {
                         <div>
                             @Html.ActionLink("Go In", "TreeList", new { id = item.Id, move = 1, moveId = ViewBag.moveId }) | 
-                            @Html.ActionLink("Move Under", "MoveTo", new { id = ViewBag.moveId, movedTo = ViewBag.rootId, Pos = item.Id})
+                            @Html.ActionLink("Move Above", "MoveTo", new { id = ViewBag.moveId, parentId = ViewBag.rootId, Pos = item.Pos}) |
+                            @Html.ActionLink("Move Under", "MoveTo", new { id = ViewBag.moveId, parentId = ViewBag.rootId, Pos = item.Pos + 1})
                         </div>
                     }
                     else if(ViewBag.move != 1)

@@ -41,11 +41,12 @@ namespace TreeDataLibrary.BusinessLogic
         public static void ChangeParent(int id, int parent_id)
         {
             string sql = "update dbo.TreeElements set Parent_Id = " + parent_id.ToString() + " WHERE Id = " + id;
+            SqlDataAccess.ExecuteData(sql);
         }
 
         public static void SetLastPosition(int Id)
         {
-            string sql = "exec dbo.SetPositionToEnd " + Id.ToString() + " ;";
+            string sql = "exec dbo.SetPositionToEnd " + Id.ToString();
             SqlDataAccess.ExecuteData(sql);
         }
 
