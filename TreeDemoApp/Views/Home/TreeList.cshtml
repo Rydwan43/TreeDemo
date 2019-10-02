@@ -6,12 +6,17 @@
 
 <h2>TreeList</h2>
 <h6>
-    <a href="~/Home/TreeList">root</a>
+    <a href="@Url.Action("TreeList", new { id = 0, move = ViewBag.move, moveId = ViewBag.moveId })">
+        <span>Root</span>
+    </a>
     @if (ViewBag.treeDirectory != null)
     {
         foreach (var item in ViewBag.treeDirectory)
         {
-            @(" > ") <a href="~/Home/TreeList/@(item.Id)">@(item.Name)</a>
+            @(" > ")
+            <a href="@Url.Action("TreeList", new { id = item.Id, move = ViewBag.move, moveId = ViewBag.moveId })">
+                <span>@(item.Name)</span>
+            </a>
         }
     }
 </h6>
