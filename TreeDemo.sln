@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeDemoApp", "TreeDemoApp\
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TreeDemoDatabase", "TreeDemoDatabase\TreeDemoDatabase.sqlproj", "{E210B983-C3FE-40D3-B420-EF63300C0D4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeDataLibrary", "TreeDataLibrary\TreeDataLibrary.csproj", "{90A70171-2998-4164-9CE8-A2C3B4BB6047}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{E210B983-C3FE-40D3-B420-EF63300C0D4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E210B983-C3FE-40D3-B420-EF63300C0D4A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E210B983-C3FE-40D3-B420-EF63300C0D4A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{90A70171-2998-4164-9CE8-A2C3B4BB6047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90A70171-2998-4164-9CE8-A2C3B4BB6047}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90A70171-2998-4164-9CE8-A2C3B4BB6047}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90A70171-2998-4164-9CE8-A2C3B4BB6047}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

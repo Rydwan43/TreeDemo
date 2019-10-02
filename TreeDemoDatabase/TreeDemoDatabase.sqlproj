@@ -60,10 +60,19 @@
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\Functions" />
     <Folder Include="dbo\Stored Procedures" />
+    <Folder Include="Database Publish\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\TreeElements.sql" />
     <Build Include="dbo\Functions\GetChildren.sql" />
     <Build Include="dbo\Functions\GetParents.sql" />
+    <Build Include="dbo\Stored Procedures\ChangeOrder.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteTree.sql" />
+    <Build Include="dbo\Stored Procedures\AddBranch.sql" />
+    <Build Include="dbo\Functions\GetLastPos.sql" />
+    <Build Include="dbo\Stored Procedures\SetPositionToEnd.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Database Publish\TreeDemoDatabase.publish.xml" />
   </ItemGroup>
 </Project>

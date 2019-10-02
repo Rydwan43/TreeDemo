@@ -1,0 +1,99 @@
+﻿@model IEnumerable<TreeDemoApp.Models.TreeElementModel>
+
+@{
+    ViewBag.Title = "TreeList";
+}
+
+<h2>TreeList</h2>
+<h6>
+    @(ViewBag.rootId)
+    <a href="~/Home/TreeList">root</a>
+    @if (ViewBag.treeDirectory != null)
+    {
+        foreach (var item in ViewBag.treeDirectory)
+        {
+            @(" > ") <a href="~/Home/TreeList/@(item.Id)">@(item.Name)</a>
+        }
+    }
+</h6>
+<p>
+    @if (ViewBag.move == 1)
+    {
+    <div>
+        @Html.ActionLink("Cancel ", "TreeList", new { id = ViewBag.rootId }) |
+        @Html.ActionLink("To Up", "MoveTo", new { id = ViewBag.moveId, movedTo = ViewBag.rootId, Pos = 0 }) |
+        @Html.ActionLink("To Down", "MoveTo", new { id = ViewBag.moveId, movedTo = ViewBag.rootId, Pos = -1})
+    </div>
+    } 
+    else
+    {
+    @Html.ActionLink("Create New Tree", "AddBranch", new { parentId = ViewBag.rootId })
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Options
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(item.Pos) @Html.DisplayFor(modelItem => item.Name)
+
+                </td>
+                <td>
+                    @if (ViewBag.move == 1 && item.Id != ViewBag.moveId)
+                    {
+                        <div>
+                            @Html.ActionLink("Go In", "TreeList", new { id = item.Id, move = 1, moveId = ViewBag.moveId }) | 
+                            @Html.ActionLink("Move Under", "MoveTo", new { id = ViewBag.moveId, movedTo = ViewBag.rootId, Pos = item.Id})
+                        </div>
+                    }
+                    else if(ViewBag.move != 1)
+                    {
+                    <div>
+                        <a href="" data-toggle="modal" data-target="#exampleModalCenter"> Delete </a> |
+                        @Html.ActionLink("Edit", "EditBranch", new { id = item.Id, parentId = ViewBag.rootId }) |
+                        @Html.ActionLink("Move", "TreeList", new { id = ViewBag.rootId, move = 1, moveId = item.Id }) |
+                        @Html.ActionLink("Go In", "TreeList", new { id = item.Id })
+                    </div>
+                    }
+
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document" style="max-width: 200px">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Are you sure ?</h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("DeleteBranch", new { id = item.Id })'">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td>@(ViewBag.countRows) Rows</td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td colspan="2">No Elements</td>
+        </tr>
+    }
+
+</table>
